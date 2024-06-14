@@ -26,10 +26,11 @@
 
 Install the package via npm:
 
-````bash
+```bash
 npm install convert-number-to-words
 Or using yarn:
 yarn add convert-number-to-words
+```
 
 ## Usage
 
@@ -41,7 +42,7 @@ const { numberToWords } = require('convert-number-to-words');
 console.log(numberToWords(123)); // Output: "one hundred twenty three"
 console.log(numberToWords(-456.78)); // Output: "negative four hundred fifty six point seven eight"
 console.log(numberToWords(0.123)); // Output: "zero point one two three"
-````
+```
 
 ```typescript
 import { numberToWords } from 'convert-number-to-words';
