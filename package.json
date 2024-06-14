@@ -1,0 +1,49 @@
+{
+  "name": "convert-number-to-words",
+  "version": "1.0.1",
+  "description": "A utility to convert numbers to English words, including decimal points.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && tsc"
+  },
+  "keywords": [
+    "number-to-words",
+    "number converter",
+    "number to words",
+    "numeral to words",
+    "number to text",
+    "convert number to words",
+    "number translation",
+    "decimal to words",
+    "number spelling",
+    "text conversion",
+    "math utilities",
+    "numeric to text",
+    "typescript",
+    "javascript",
+    "open source",
+    "integer to words",
+    "fractional words",
+    "english words",
+    "utility",
+    "string conversion"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/say-m/convert-number-to-words.git"
+  },
+  "homepage": "https://github.com/say-m/convert-number-to-words#readme",
+  "bugs": {
+    "url": "https://github.com/say-m/convert-number-to-words/issues"
+  },
+  "author": "Mohammad Sayem",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
