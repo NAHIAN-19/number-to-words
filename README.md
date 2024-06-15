@@ -111,6 +111,9 @@ console.log(numberToWords(0)); // Output: "zero"
 
 // Convert year
 console.log(numberToWords(2024 , 'year')) //Output: "twenty twenty-four"
+
+// Convert currency
+console.log(numberToWords(1000.75, { to: 'currency' })); // Output: "one thousand dollars and seventy-five cents"
 ```
 
 ## Contributing
