@@ -1,4 +1,4 @@
-export function numberToWords(num: number, to: string = 'number'): string {
+export function numberToWords(num: number, options?: { to?: string }): string {
   function convertBelowThousand(n: number): string {
     const belowTwenty: string[] = [
       '',
@@ -109,13 +109,27 @@ export function numberToWords(num: number, to: string = 'number'): string {
     return convertBelowThousand(firstTwoDigits) + ' ' + convertBelowThousand(lastTwoDigits);
   }
 
+  function convertCurrency(n: number): string {
+    const integerPart: number = Math.floor(n);
+    const fractionalPart: number = Math.round((n - integerPart) * 100);
+    let result = convertToWords(integerPart) + ' dollars';
+    if (fractionalPart > 0) {
+      result += ' and ' + convertToWords(fractionalPart) + ' cents';
+    }
+    return result;
+  }
+
   const numParts: string[] = num.toString().split('.');
   const integerPart: number = Math.floor(Math.abs(parseFloat(numParts[0])));
   const fractionalPart: string = numParts.length > 1 ? numParts[1] : '';
 
+  const to = options?.to || 'number';
+
   let result: string;
   if (to === 'year') {
     result = convertYear(integerPart);
+  } else if (to === 'currency') {
+    result = convertCurrency(num);
   } else {
     result = convertToWords(integerPart);
     if (fractionalPart.length > 0) {
@@ -123,7 +137,7 @@ export function numberToWords(num: number, to: string = 'number'): string {
     }
   }
 
-  if (num < 0 && to !== 'year') {
+  if (num < 0 && to !== 'year' && to !== 'currency') {
     result = 'negative ' + result;
   }
 
@@ -131,15 +145,18 @@ export function numberToWords(num: number, to: string = 'number'): string {
 }
 
 // Example Usage:
-console.log(numberToWords(1984, 'year')); // Output: "nineteen eighty four"
-console.log(numberToWords(2023, 'year')); // Output: "twenty twenty three"
-console.log(numberToWords(2000, 'year')); // Output: "two thousand"
-console.log(numberToWords(1900, 'year')); // Output: "nineteen hundred"
-console.log(numberToWords(1800, 'year')); // Output: "eighteen hundred"
-console.log(numberToWords(2100, 'year')); // Output: "twenty one hundred"
-console.log(numberToWords(705, 'year'));  // Output: "seven oh five"
-console.log(numberToWords(785, 'year'));  // Output: "seven eighty five"
+console.log(numberToWords(1984, { to: 'year' })); // Output: "nineteen eighty four"
+console.log(numberToWords(2023, { to: 'year' })); // Output: "twenty twenty three"
+console.log(numberToWords(2000, { to: 'year' })); // Output: "two thousand"
+console.log(numberToWords(1900, { to: 'year' })); // Output: "nineteen hundred"
+console.log(numberToWords(1800, { to: 'year' })); // Output: "eighteen hundred"
+console.log(numberToWords(2100, { to: 'year' })); // Output: "twenty one hundred"
+console.log(numberToWords(705, { to: 'year' }));  // Output: "seven oh five"
+console.log(numberToWords(785, { to: 'year' }));  // Output: "seven eighty five"
 
 console.log(numberToWords(0)); // Output: "zero"
 console.log(numberToWords(1234.56)); // Output: "one thousand two hundred thirty-four point five six"
 console.log(numberToWords(-567)); // Output: "negative five hundred sixty seven"
+console.log(numberToWords(1234.56, { to: 'currency' })); // Output: "one thousand two hundred thirty-four dollars and fifty-six cents"
+console.log(numberToWords(1000, { to: 'currency' })); // Output: "one thousand dollars"
+console.log(numberToWords(1000.75, { to: 'currency' })); // Output: "one thousand dollars and seventy-five cents"

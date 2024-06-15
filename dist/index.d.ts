@@ -1,1 +1,3 @@
-export declare function numberToWords(num: number, to?: string): string;
+export declare function numberToWords(num: number, options?: {
+    to?: string;
+}): string;
