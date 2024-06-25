@@ -40,6 +40,7 @@ Import and use the numberToWords function in your project:
 const { numberToWords } = require('convert-number-to-words');
 
 console.log(numberToWords(123)); // Output: "one hundred twenty three"
+console.log(numberToWords(2000, 'year')); // Output: "two thousand"
 console.log(numberToWords(-456.78)); // Output: "negative four hundred fifty six point seven eight"
 console.log(numberToWords(0.123)); // Output: "zero point one two three"
 ```
@@ -63,6 +64,7 @@ import { numberToWords } from 'convert-number-to-words';
 
 const num = 1234;
 console.log(numberToWords(num)); // Output: "one thousand two hundred thirty four"
+console.log(numberToWords(num, 'year')); // Output: "twelve thirty-four"
 ```
 
 ### Handling Decimals
@@ -106,6 +108,12 @@ console.log(numberToWords(-789.12)); // Output: "negative seven hundred eighty n
 
 // Convert zero
 console.log(numberToWords(0)); // Output: "zero"
+
+// Convert year
+console.log(numberToWords(2024, 'year')); //Output: "twenty twenty-four"
+
+// Convert currency
+console.log(numberToWords(1000.75, { to: 'currency' })); // Output: "one thousand dollars and seventy-five cents"
 ```
 
 ## Contributing
